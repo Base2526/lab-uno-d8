@@ -788,3 +788,9 @@ $databases['default']['default'] = array (
   'driver' => 'pgsql',
 );
 $config_directories['sync'] = 'sites/default/files/config_0OuYMS_c6VEycN1mZo-iNPpraRYecG9mFm6k-_xNAE2eeUp5Jxo2B5Tu_QTKXXGz11e2lf2EtQ/sync';
+
+$settings['memcache']['servers'] = ['127.0.0.1:11211' => 'default'];
+$settings['memcache']['bins'] = ['default' => 'default'];
+$settings['memcache']['key_prefix'] = '';
+$settings['cache']['default'] = 'cache.backend.memcache';
+$settings['cache']['bins']['render'] = 'cache.backend.memcache';
