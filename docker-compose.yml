@@ -7,7 +7,7 @@ services:
     container_name: "${PROJECT_NAME}_web"
     ports:
       - 9999:80
-    # volumes:
+    volumes:
       # - /var/www/html/modules
       # - /var/www/html/profiles
       # - /var/www/html/themes
@@ -16,9 +16,10 @@ services:
       # existing content of the image at the same location
       # - ./services.yml:/var/www/html/sites/default/services.yml
       # - ./file:/var/www/html/core/modules/file
-      # - ./modules:/var/www/html/sites/default/modules
-      # - ./themes:/var/www/html/sites/default/themes
-      # - ./info.php:/var/www/html/info.php
+      - ./sites/default/settings.php:/var/www/html/sites/default/settings.php
+      - ./modules:/var/www/html/sites/default/modules
+      - ./themes:/var/www/html/sites/default/themes
+      - ./info.php:/var/www/html/info.php
     restart: always
 
   postgres:
