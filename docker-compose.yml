@@ -7,7 +7,7 @@ services:
     container_name: "${PROJECT_NAME}_web"
     ports:
       - 9999:80
-    # volumes:
+    volumes:
       # - /var/www/html/modules
       # - /var/www/html/profiles
       # - /var/www/html/themes
@@ -16,13 +16,16 @@ services:
       # existing content of the image at the same location
       # - ./services.yml:/var/www/html/sites/default/services.yml
       # - ./file:/var/www/html/core/modules/file
-      # - ./modules:/var/www/html/sites/default/modules
-      # - ./themes:/var/www/html/sites/default/themes
-      # - ./info.php:/var/www/html/info.php
+      - ./sites/default/settings.php:/var/www/html/sites/default/settings.php
+      - ./modules:/var/www/html/sites/default/modules
+      - ./themes:/var/www/html/sites/default/themes
+      - ./info.php:/var/www/html/info.php
+      - ./php.ini:/usr/local/etc/php/php.ini
     restart: always
 
   postgres:
     image: postgres:10
+    hostname: db_postgres
     environment:
       POSTGRES_PASSWORD: $DB_PASSWORD
       POSTGRES_DB: $DB_NAME
@@ -38,27 +41,52 @@ services:
   #    POSTGRES_PASSWORD: $DB_PASSWORD
   #    POSTGRES_DB: $DB_NAME
   #    POSTGRES_USER: $DB_USER
-  #  ports:
-  #    - 5432:5432
+    #ports:
+    #  - 5432:5432
+    #volumes:
+    # - ./pgdata:/var/lib/postgresql/data
   #  volumes:
   #    - ./postgres-init:/docker-entrypoint-initdb.d # Place init file(s) here.
       #- "/c/portgres/:/var/lib/postgresql/data"
     # - /path/to/postgres/data/on/host:/var/lib/postgresql/data # Use bind mount
     #db-data:
-    #driver: local
+    #driver: local  
 
   pgadmin:
     image: dpage/pgadmin4:3.3
-    container_name: pgadmin4
+    container_name: "${PROJECT_NAME}_pgadmin4"
     ports:
-      - 7777:80
+      - 1111:80
     volumes:
       - ./pgadmin:/var/lib/pgadmin/storage
     environment:
       PGADMIN_DEFAULT_EMAIL: root
       PGADMIN_DEFAULT_PASSWORD: root
-    hostname: pgadmin4
+    hostname: "${PROJECT_NAME}_pgadmin4"
     restart: always
+
+  Memcached:
+    image: sameersbn/memcached:1.5.6-2
+    ports:
+      - "11211:11211"
+    restart: always
+
+  dbbackup:
+    image: kartoza/pg-backup:9.4
+    hostname: pg-backups
+    volumes:
+      - ./backups:/backups
+    links:
+      - postgres:db
+    environment:
+      - DUMPPREFIX=$PROJECT_NAME
+      # These are all defaults anyway, but setting explicitly in
+      # case we ever want to ever use different credentials
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASS=$DB_PASSWORD
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DBNAME=$DB_NAME
 
 # docker run --name d8 -d -p 8080:80 drupal:8.6.17
 # docker run --name pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -d -p 5432:5432 postgres:10

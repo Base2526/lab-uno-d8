@@ -1,0 +1,16 @@
+name: LAB Arduino
+description: Arduino connect drupal.
+core: 8.x
+type: module
+package: Arduino
+# dependencies:
+#   - paragraphs:paragraphs
+#   - devel:devel
+#   - devel_php:devel_php
+#   - improved_multi_select:improved_multi_select
+#   - entity:entity
+#   - entity_reference_revisions:entity_reference_revisions
+#   - entity_usage:entity_usage
+#   - ultimate_cron:ultimate_cron
+#   - token:token
+#   - profile:profile

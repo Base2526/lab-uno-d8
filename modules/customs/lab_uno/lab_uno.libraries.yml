@@ -1,0 +1,18 @@
+# A simple script using jquery ui accordion.
+# js_example.accordion:
+#   js:
+#     js/js_example_accordion.js: {}
+#   # Build up our dependencies for this page as a library. Our accordion script
+#   # needs jquery.ui.accordion. You can find the core scripts under core/assets/.
+#   dependencies:
+#     - core/jquery.ui.accordion
+
+# global-styling:
+#  css:
+#    component:
+#      css/b2b-custom-css.css: {}
+
+# Show how weights work.
+js_forms:
+  js:
+    js/lab_uno.js: {}

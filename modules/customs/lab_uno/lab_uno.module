@@ -1,0 +1,28 @@
+<?php
+/*
+ * @file
+ * code for resume module
+*/
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_help().
+ */
+function lab_uno_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the mydata module.
+    case 'help.page.lab_uno':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This dispaly information what you enter your application > lab uno.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+?>

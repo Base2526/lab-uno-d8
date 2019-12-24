@@ -1,0 +1,28 @@
+# Test API endpoints
+lab_uno_api.get:
+    path: 'my-api/get.json'
+    defaults: { _controller: '\Drupal\lab_uno\Plugin\rest\resource\APIController::get_example' }
+    methods:  [GET]
+    requirements:
+      _access: 'TRUE'
+  
+lab_uno_api.put:
+    path: 'my-api/put.json'
+    defaults: { _controller: '\Drupal\lab_uno\Plugin\rest\resource\APIController::put_example' }
+    methods:  [PUT]
+    requirements:
+      _access: 'TRUE'
+  
+lab_uno_api.post:
+    path: 'my-api/post.json'
+    defaults: { _controller: '\Drupal\lab_uno\Plugin\rest\resource\APIController::post_example' }
+    methods:  [POST]
+    requirements:
+      _access: 'TRUE'
+  
+lab_uno_api.delete:
+    path: 'my-api/delete.json'
+    defaults: { _controller: '\Drupal\lab_uno\Plugin\rest\resource\APIController::delete_example' }
+    methods:  [DELETE]
+    requirements:
+      _access: 'TRUE'
