@@ -15,7 +15,16 @@ RUN docker-php-ext-configure memcached && docker-php-ext-install memcached
 RUN apt-get update -y
 RUN apt install memcached -y
 COPY ./config/memcached.conf /etc/memcached.conf
-# RUN service memcached restart
+#
+ 
+# edit settings.php {Drupal 8}
+# // Set’s Memcache key prefix for your site and useful in working sites with same memcache as backend.
+# $settings['memcache_storage']['key_prefix'] = '';
+# // Set’s Memcache storage server’s.
+# $settings['memcache_storage']['memcached_servers'] =  ['127.0.0.1:11211' => 'default'];
+# // Enables to display total hits and misses
+# $settings['memcache_storage']['debug'] = TRUE;
+
 # install memcached
 
 # Install Composer
