@@ -280,7 +280,7 @@ $config_directories = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '7O86UWLNBjqkWdMnrAlQoAkYfUQ_AkDOraRRJu2YdrspiULH_-8vmuEYXSTX-B1qcQAkaS-MNw';
+$settings['hash_salt'] = 'fYBXA0LfdZrm2-UiFhBeMQHl2xGEwNJhfgAU_oD_JNRRhiusxNdBvNVK3isnl6IVXoPgfggtOQ';
 
 /**
  * Deployment identifier.
@@ -763,6 +763,21 @@ $settings['entity_update_batch_size'] = 50;
  */
 $settings['entity_update_backup'] = TRUE;
 
+
+// $settings['memcache']['servers'] = ['127.0.0.1:11211' => 'default'];
+// $settings['memcache']['bins'] = ['default' => 'default'];
+// $settings['memcache']['key_prefix'] = 'subscriptions';
+// $settings['memcache']['stampede_protection'] = TRUE;
+
+// Set’s default cache storage as Memcache and excludes database connection for cache
+// $settings['cache']['default'] = 'cache.backend.memcache_storage';
+// Set’s Memcache key prefix for your site and useful in working sites with same memcache as backend.
+$settings['memcache_storage']['key_prefix'] = '';
+// Set’s Memcache storage server’s.
+$settings['memcache_storage']['memcached_servers'] =  ['127.0.0.1:11211' => 'default'];
+// Enables to display total hits and misses
+$settings['memcache_storage']['debug'] = TRUE;
+
 /**
  * Load local development override configuration, if available.
  *
@@ -782,15 +797,9 @@ $databases['default']['default'] = array (
   'username' => 'postgres',
   'password' => 'postgres',
   'prefix' => '',
-  'host' => '172.25.0.4',
+  'host' => '172.22.0.5',
   'port' => '5432',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\pgsql',
   'driver' => 'pgsql',
 );
-$config_directories['sync'] = 'sites/default/files/config_0OuYMS_c6VEycN1mZo-iNPpraRYecG9mFm6k-_xNAE2eeUp5Jxo2B5Tu_QTKXXGz11e2lf2EtQ/sync';
-
-$settings['memcache']['servers'] = ['127.0.0.1:11211' => 'default'];
-$settings['memcache']['bins'] = ['default' => 'default'];
-$settings['memcache']['key_prefix'] = '';
-$settings['cache']['default'] = 'cache.backend.memcache';
-$settings['cache']['bins']['render'] = 'cache.backend.memcache';
+$config_directories['sync'] = 'sites/default/files/config_HBALDnS-9BHsNUltm6TEldFSkjcvSmj1Jr12AXrpo3opjLRxRgFvNgKatrEzfijyD_ySt30PZw/sync';
