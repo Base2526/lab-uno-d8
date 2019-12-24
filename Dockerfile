@@ -1,6 +1,6 @@
 FROM drupal:8.7.10
 
-# install memcached [>> docker exec -it container_id bash >> service memcached restart >> ok]
+# install memcached
 RUN apt-get update
 RUN apt-get install -y git libmemcached-dev wget unzip curl
 RUN apt-get install --no-install-recommends -y libzip-dev zlibc zlib1g
@@ -15,16 +15,6 @@ RUN docker-php-ext-configure memcached && docker-php-ext-install memcached
 RUN apt-get update -y
 RUN apt install memcached -y
 COPY ./config/memcached.conf /etc/memcached.conf
-#
- 
-# edit settings.php {Drupal 8}
-# // Set’s Memcache key prefix for your site and useful in working sites with same memcache as backend.
-# $settings['memcache_storage']['key_prefix'] = '';
-# // Set’s Memcache storage server’s.
-# $settings['memcache_storage']['memcached_servers'] =  ['127.0.0.1:11211' => 'default'];
-# // Enables to display total hits and misses
-# $settings['memcache_storage']['debug'] = TRUE;
-
 # install memcached
 
 # Install Composer
