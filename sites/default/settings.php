@@ -773,8 +773,10 @@ $settings['entity_update_backup'] = TRUE;
 // $settings['cache']['default'] = 'cache.backend.memcache_storage';
 // Set’s Memcache key prefix for your site and useful in working sites with same memcache as backend.
 $settings['memcache_storage']['key_prefix'] = '';
-// Set’s Memcache storage server’s.
-$settings['memcache_storage']['memcached_servers'] =  ['127.0.0.1:11211' => 'default'];
+// Set’s Memcache storage server’s. 
+$settings['memcache_storage']['memcached_servers'] =  [ '127.0.0.1:11211' => 'default', 
+                                                        '172.22.0.3:11212' => 'cluster1'];
+// $settings['memcache_storage']['memcached_servers'] =  ['172.22.0.2:11211' => 'default'];
 // Enables to display total hits and misses
 $settings['memcache_storage']['debug'] = TRUE;
 
@@ -797,7 +799,7 @@ $databases['default']['default'] = array (
   'username' => 'postgres',
   'password' => 'postgres',
   'prefix' => '',
-  'host' => '172.22.0.5',
+  'host' => '172.22.0.4',
   'port' => '5432',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\pgsql',
   'driver' => 'pgsql',

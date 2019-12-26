@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Installer for MongoDB module.
+ */
+
+require_once __DIR__ . '/mongodb_install.php';

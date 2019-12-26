@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Main module to connect Drupal to MongoDB.
+ */
+
+require_once __DIR__ . '/mongodb_module.php';

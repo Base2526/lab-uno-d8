@@ -32,6 +32,15 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 COPY ./modules /var/www/html/sites/default/modules
 COPY ./themes /var/www/html/sites/default/themes
 
+# COPY ./sites/default/settings.local.php /var/www/html/sites/default/settings.local.php
+
+# COPY ./vendor /var/www/html/vendor
+COPY ./composer.json /var/www/html/composer.json
+COPY ./composer.lock /var/www/html/composer.lock
+
+WORKDIR /var/www/html
+RUN composer install
+
 RUN mkdir -p /var/www/html/sites/default/files
 RUN chmod 777 -R /var/www/html/sites/default/files
 
